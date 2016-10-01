@@ -1,7 +1,7 @@
 ---
 title: "Practical Machine Learning Final Project"
 author: "Rakesh Chatrath"
-date: "February 3, 2016"
+date: "September 30, 2016"
 output: html_document
 ---
 
@@ -10,14 +10,8 @@ library(caret)
 library(ggplot2)
 library(Metrics)
 
-trainURL <- "https://d396qusza40orc.cloudfront.net/predmachlearn/pml-training.csv"
-testURL <- "https://d396qusza40orc.cloudfront.net/predmachlearn/pml-testing.csv"
-
-train <- "training.csv"
-test <- "testing.csv"
-
-download.file(trainURL, train, method = "curl")
-download.file(testURL, test, method = "curl")
+train <- "pml-training.csv"
+test <- "pml-testing.csv"
 
 train.Data <- read.csv(train, na.strings=c("NA","#DIV/0!",""))
 test.Data <- read.csv(test, na.strings=c("NA","#DIV/0!",""))
@@ -75,9 +69,7 @@ Random Forests were used with the caret packages `train()` function to fit a mod
 randomForestMod <- train(classe ~.,
                          data = training,
                          method = "rf",
-                         trControl = control,
-                         prox = TRUE,
-                         allowParallel = TRUE)
+                         trControl = control)
 ```
 
 ```{r}
